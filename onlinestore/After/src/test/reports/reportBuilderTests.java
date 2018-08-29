@@ -26,7 +26,9 @@ public class reportBuilderTests {
 
     }
     @Test
-    public void shouldReturnProFutureAccountReportModel(){
+    public void shouldThrowAnExceptionBecauseProFutureAccountReportBuilderHasInvalidConstructor(){
+        castException.expect(ClassHasInvalidConstructor.class);
+        castException.expectMessage(containsString("ProFutureAccount"));
         IAmReportModelBuilder<ProFutureAccount> builder = ReportModelBuilderFactory.create(new ProFutureAccount());
         Assert.assertNotNull(builder);
         Assert.assertThat(builder, instanceOf(ProFutureAccountReportModelBuilder.class) );

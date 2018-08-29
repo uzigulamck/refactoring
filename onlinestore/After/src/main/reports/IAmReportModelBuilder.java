@@ -4,6 +4,7 @@ public abstract class IAmReportModelBuilder<T> {
 
     private ReportModel<T> report;
 
+
     public ReportModel<T> create(T model) {
         report = new ReportModel<T>(model);
 
