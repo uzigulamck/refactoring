@@ -1,13 +1,16 @@
 package reports;
 
 import org.junit.*;
+import org.junit.rules.ExpectedException;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.core.StringContains.containsString;
 
 public class reportBuilderTests {
 
     private ReportManager manager;
-
+    @Rule
+    public ExpectedException castException = ExpectedException.none();
     @Before
     public  void setup(){
         manager = new ReportManager();
@@ -40,11 +43,14 @@ public class reportBuilderTests {
     }
 
     @Test
-    public void shouldReturnModel (){
-        Object model = manager.GenerateReport(new ProFutureAccount());
+    public void shouldThrowAClassCastException (){
+
+        castException.expect(ClassNotImplementedException.class);
+        castException.expectMessage(containsString("NotImplementedAccount"));
+        Object model = manager.GenerateReport(new NotImplementedAccount());
         Assert.assertNotNull(model);
         Assert.assertThat(model, instanceOf(ReportModel.class) );
-        Assert.assertThat(((ReportModel<ProFutureAccount>)model).getDetail(), instanceOf(ProFutureAccount.class) );
+        Assert.assertThat(((ReportModel<NotImplementedAccount>)model).getDetail(), instanceOf(NotImplementedAccount.class) );
 
     }
 

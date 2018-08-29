@@ -1,18 +1,20 @@
 package reports;
 
 public abstract class IAmReportModelBuilder<T> {
-    protected ReportModel<T> report;
+
+    private ReportModel<T> report;
+
     public ReportModel<T> create(T model) {
         report = new ReportModel<T>(model);
 
-         this.Header(model)
-              .Body(model)
-              .Footer(model);
+         this.createHeader(model)
+              .createBody(model)
+              .createFooter(model);
         return report;
 
     }
-    protected abstract IAmReportModelBuilder Header( T model);
-    protected abstract IAmReportModelBuilder Body(T model);
-    protected abstract IAmReportModelBuilder Footer(T model);
+    protected abstract IAmReportModelBuilder createHeader(T model);
+    protected abstract IAmReportModelBuilder createBody(T model);
+    protected abstract IAmReportModelBuilder createFooter(T model);
 }
 

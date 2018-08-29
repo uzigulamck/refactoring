@@ -1,7 +1,6 @@
 package reports;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.ParameterizedType;
 
 public class ReportModelBuilderFactory {
 
@@ -13,7 +12,7 @@ public class ReportModelBuilderFactory {
             return builder;
         }
         catch(Exception e){
-            return null;
+            throw new ClassNotImplementedException(account.getClass().getName() + "ReportModelBuilder" + " does not implement IAmReportModelBuilder<" + account.getClass().getName() + ">" , e);
         }
 
     }
@@ -22,7 +21,11 @@ public class ReportModelBuilderFactory {
             throws ClassNotFoundException
     {
         Class<?> any = Class.forName(type.getClass().getName() + "ReportModelBuilder");
-        Class<? extends IAmReportModelBuilder<T>> creator = (Class<? extends IAmReportModelBuilder<T>>) any;
-        return creator;
+        if (any.getDeclaredConstructors().length==1)
+        {
+            Class<? extends IAmReportModelBuilder<T>> creator = (Class<? extends IAmReportModelBuilder<T>>) any;
+            return creator;
+        }
+        throw new ClassCastException("The child class should have only a default constructor");
     }
 }

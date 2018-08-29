@@ -1,4 +1,4 @@
 package patterns;
 
-public interface IAmCommand {
+public interface IAmCommand <TResponse>{
 }

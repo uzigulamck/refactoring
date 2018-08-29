@@ -15,7 +15,7 @@ public class BasicResponse<TContent> {
 
     public BasicResponse(TContent content){
         this.content = content;
-        this.success = success;
+        this.success = true;
     }
 
     public BasicResponse(Exception exception) {

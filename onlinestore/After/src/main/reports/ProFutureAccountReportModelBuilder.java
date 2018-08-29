@@ -3,15 +3,15 @@ package reports;
 public class ProFutureAccountReportModelBuilder extends IAmReportModelBuilder<ProFutureAccount> {
 
 
-    protected IAmReportModelBuilder Header(ProFutureAccount model) {
+    protected IAmReportModelBuilder createHeader(ProFutureAccount model) {
         return this;
     }
 
-    protected IAmReportModelBuilder Body(ProFutureAccount model) {
+    protected IAmReportModelBuilder createBody(ProFutureAccount model) {
         return this;
     }
 
-    protected IAmReportModelBuilder Footer(ProFutureAccount model) {
+    protected IAmReportModelBuilder createFooter(ProFutureAccount model) {
         return this;
     }
 }
